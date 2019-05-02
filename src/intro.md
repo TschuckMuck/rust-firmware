@@ -8,6 +8,9 @@
 * ...
 
 ## Software
+* Scan Matrix
+* Leds (Framebuffer based control)
+
 
 ## Links
 
@@ -16,6 +19,10 @@
 ## GH60 based Breakout board
 
 ## DevBoard
+
+
+# Resources
+* [MCU nRF52840 Datasheet](https://infocenter.nordicsemi.com/pdf/nRF52840_OPS_v0.5.pdf)
 
 
 # Future Ideas / Roadmap
