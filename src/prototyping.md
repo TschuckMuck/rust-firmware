@@ -7,7 +7,7 @@ This section of the book describes the process of prototyping the new yak keyboa
 ### Documentation/Manuals/Datasheets
 To get all relevant datasheets you might need to consult use the following command(s) to retrieve them:
 
-```
+```shell
 user@host $  cd yak/book/datasheets/
 user@host $  ./download_datasheets.sh
 ```
@@ -22,12 +22,12 @@ user@host $  ./download_datasheets.sh
 * rust >= 1.34 (arm libs ->)
 
 ##### C (ARM Toolchain)
-```
+```shell
 user@host ~$ brew install armmbed/formulae/arm-none-eabi-gcc
 ```
 
 ##### Segger Debugging tools
-```
+```shell
 user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
 user@host ~$ brew cask install segger-jlink
 ```
