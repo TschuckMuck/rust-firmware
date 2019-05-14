@@ -1,4 +1,5 @@
 # YAK Book
+[![Build Status](https://travis-ci.org/YetAnotherKeyboard/book.svg?branch=master)](https://travis-ci.org/YetAnotherKeyboard/book)
 
 This book will be main serve as documentation for the dev process of the YAK and as generall documentation resources
 for the YAK keybaord.
