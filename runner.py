@@ -38,7 +38,8 @@ if __name__ == '__main__':
     with tempfile.TemporaryDirectory() as tmp_dir:
         kill_open_ocd()
         delete_flash()
-        hexfile = Path(tmp_dir, 'image.hex') 
+        hexfile = Path(tmp_dir, 'image.hex')
         convert_elf_to_hex(elf_file, hexfile)
         flash_hex_file(hexfile)
         start_debugger(elf_file)
+
