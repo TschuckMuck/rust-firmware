@@ -11,6 +11,7 @@ To get all relevant datasheets you might need to consult use the following comma
 user@host $  cd yak/book/datasheets/
 user@host $  ./download_datasheets.sh
 ```
+
 ### Software
  * Rust toolchain
  * C toolchain
@@ -19,18 +20,35 @@ user@host $  ./download_datasheets.sh
 
 #### MacOsx
 ##### Rust (ARM Toolchain)
+* rustup
 * rust >= 1.34 (arm libs ->)
 
 ##### C (ARM Toolchain)
+[Download Page](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
 ```shell
 user@host ~$ brew install armmbed/formulae/arm-none-eabi-gcc
 ```
 
 ##### Segger Debugging tools
+[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
 ```shell
 user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
 user@host ~$ brew cask install segger-jlink
 ```
+
+##### Nordic nrf5x command line tools
+[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
+
+```shell
+user@host ~$ brew cask install nordic-nrf5x-command-line-tools
+```
+
+##### Open Ocd
+[Project Homepage](http://openocd.org/)
+```shell
+user@host ~$ brew install open-ocd
+```
+
 
 ### Hardware
 
@@ -51,3 +69,46 @@ The GH60 PCB can be ordered for example [here](https://www.banggood.com/GH60-DIY
 In order to communicate with the uart on the dev board a adapter for the "PC" is needed you can order such an adapter for example [here](https://www.amazon.de/dp/B0753H4SQS/ref=cm_sw_em_r_mt_dp_U_uEdSCb45T73B2?th=1)
 
 
+
+
+## Debug / Flash
+
+This Section assumes you have connected a USB cable to the interface MCU of the of the nRF52840 dev board.
+
+### Open OCD
+```shell
+user@host ~$ openocd -f board/nordic_nrf52_dk.cfg
+```
+
+### Connect to GDB Server
+
+#### GDB
+
+```shell
+user@host ~$ gdb target/thumbv7em-none-eabihf/rust-firmware
+
+(gdb) target remote 127.0.0.1:2331
+
+```
+
+#### LLDB
+** Attention ** Currently it is easier to use GDB due to the fact that LLDB e.g. does not support the monitor command out of the box.
+
+
+```shell
+user@host ~$ lldb
+(lldb) platform select remote-gdb-server
+(lldb) platform connect connect://127.0.0.1:2331
+```
+
+
+### Erase Flash
+```shell
+user@host ~$  nrfjprog --eraseall -f nrf52
+```
+
+
+#### Convert .elf file to intel hex file
+```shell
+arm-none-eabi-objcopy -O ihex target/thumbv7em-none-eabihf/debug/rust-firmware image.bin
+```
