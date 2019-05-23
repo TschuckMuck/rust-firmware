@@ -1,98 +1,51 @@
-# Prototyping
-This section of the book describes the process of prototyping the new yak keyboard based on the existing GH60.
+# MacOsx
 
-
-## Prerequisite
-
-### Documentation/Manuals/Datasheets
-To get all relevant datasheets you might need to consult use the following command(s) to retrieve them:
-
-```shell
-user@host $  cd yak/book/datasheets/
-user@host $  ./download_datasheets.sh
-```
-
-### Software
- * Rust toolchain
- * C toolchain
- * SEGGER debugging tools
-
-
-#### Rust (ARM Toolchain)
-* rustup
-* rust >= 1.34 (arm libs ->)
-
-##### All non-Windows platforms
-```shell
-curl https://sh.rustup.rs -sSf | sh
-```
-
-
-#### C (ARM Toolchain)
-[Download Page](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
-
-##### MacOsx
+## C (ARM Toolchain)
 ```shell
 user@host ~$ brew install armmbed/formulae/arm-none-eabi-gcc
 ```
-##### Linux
+## Rust Toolchain
 ```shell
-sudo apt install gcc-arm-none-eabi
+user@host ~$ curl https://sh.rustup.rs -sSf | sh
+```
+```shell
+user@host ~$ rustup target add thumbv7em-none-eabihf
+```
+## SEGGER Debugging tools
+```shell
+user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
+user@host ~$ brew cask install segger-jlink
+```
+## Nordic nRF5x command line tools
+```shell
+user@host ~$ brew cask install nordic-nrf5x-command-line-tools
+```
+## Open Ocd
+```shell
+user@host ~$ brew install open-ocd
 ```
 
 
-#### SEGGER Debugging tools
-[Download Page](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack)
 
-##### MacOsx
+##### Segger Debugging tools
+[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
 ```shell
 user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
 user@host ~$ brew cask install segger-jlink
 ```
 
-##### Linux
-Go to the download page, choose the appropriate JLink Software & Documentation package, then install
-similar to this example:
-```shell
-sudo dpkg -i ~/Downloads/JLink_Linux_V644i_x86_64.deb
-```
+##### Nordic nrf5x command line tools
+[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
 
-
-#### Nordic nRF5x command line tools
-[Download Page](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF5-Command-Line-Tools/Download#infotabs)
-
-##### MacOsx
 ```shell
 user@host ~$ brew cask install nordic-nrf5x-command-line-tools
 ```
 
-##### Linux
-Go to the download page, choose the appropriate SW package, then extract similar to this example:
-```shell
-tar xf ~/Downloads/nRF-Command-Line-Tools_9_8_1_Linux-x86_64.tar
-```
-Next move the extracted folders to your desired destination:
-```shell
-sudo mv nrfjprog/ /opt/nrfjprog
-sudo mv mergehex/ /opt/mergehex
-```
-And set up your path to find the programs:
-```shell
-export PATH="$PATH:/opt/nrfjprog"
-export PATH="$PATH:/opt/mergehex"
-```
-
-
-#### Open Ocd
+##### Open Ocd
 [Project Homepage](http://openocd.org/)
-
-##### MacOsx
 ```shell
 user@host ~$ brew install open-ocd
 ```
-
-##### Linux
-No instructions yet - still working on it!
 
 
 ### Hardware
