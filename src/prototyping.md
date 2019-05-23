@@ -15,39 +15,84 @@ user@host $  ./download_datasheets.sh
 ### Software
  * Rust toolchain
  * C toolchain
- * Segger debugging tools
+ * SEGGER debugging tools
 
 
-#### MacOsx
-##### Rust (ARM Toolchain)
+#### Rust (ARM Toolchain)
 * rustup
 * rust >= 1.34 (arm libs ->)
 
-##### C (ARM Toolchain)
+##### All non-Windows platforms
+```shell
+curl https://sh.rustup.rs -sSf | sh
+```
+
+
+#### C (ARM Toolchain)
 [Download Page](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+
+##### MacOsx
 ```shell
 user@host ~$ brew install armmbed/formulae/arm-none-eabi-gcc
 ```
+##### Linux
+```shell
+sudo apt install gcc-arm-none-eabi
+```
 
-##### Segger Debugging tools
-[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
+
+#### SEGGER Debugging tools
+[Download Page](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack)
+
+##### MacOsx
 ```shell
 user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
 user@host ~$ brew cask install segger-jlink
 ```
 
-##### Nordic nrf5x command line tools
-[Download Page](https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html)
+##### Linux
+Go to the download page, choose the appropriate JLink Software & Documentation package, then install
+similar to this example:
+```shell
+sudo dpkg -i ~/Downloads/JLink_Linux_V644i_x86_64.deb
+```
 
+
+#### Nordic nRF5x command line tools
+[Download Page](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF5-Command-Line-Tools/Download#infotabs)
+
+##### MacOsx
 ```shell
 user@host ~$ brew cask install nordic-nrf5x-command-line-tools
 ```
 
-##### Open Ocd
+##### Linux
+Go to the download page, choose the appropriate SW package, then extract similar to this example:
+```shell
+tar xf ~/Downloads/nRF-Command-Line-Tools_9_8_1_Linux-x86_64.tar
+```
+Next move the extracted folders to your desired destination:
+```shell
+sudo mv nrfjprog/ /opt/nrfjprog
+sudo mv mergehex/ /opt/mergehex
+```
+And set up your path to find the programs:
+```shell
+export PATH="$PATH:/opt/nrfjprog"
+export PATH="$PATH:/opt/mergehex"
+```
+
+
+#### Open Ocd
 [Project Homepage](http://openocd.org/)
+
+##### MacOsx
 ```shell
 user@host ~$ brew install open-ocd
 ```
+
+##### Linux
+No instructions yet - still working on it!
 
 
 ### Hardware
