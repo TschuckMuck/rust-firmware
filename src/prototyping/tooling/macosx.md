@@ -47,7 +47,6 @@ user@host ~$ brew cask install nordic-nrf5x-command-line-tools
 user@host ~$ brew install open-ocd
 ```
 
-
 ### Hardware
 
 * nRF52840 Dev Board

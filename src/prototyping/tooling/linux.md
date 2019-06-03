@@ -3,8 +3,9 @@
 ## C (ARM Toolchain)
 ```shell
 user@host ~$ sudo apt install gcc-arm-none-eabi
+user@host ~$ sudo apt install gdb-arm-none-eabi
 ```
-#### Rust Toolchain
+## Rust Toolchain
 ```shell
 user@host ~$ curl https://sh.rustup.rs -sSf | sh
 ```
@@ -32,4 +33,31 @@ user@host ~$ export PATH="$PATH:/opt/mergehex"
 ```
 
 ## Open Ocd
-No instructions yet - still working on it!
+The openocd package provided to Ubuntu 16.04 sucks, so we'll build it on our own.
+Building on our own also kind of sucks, but at least we get a proper OpenOCD installation when we're
+done.
+
+If you have a pre-existing version of OpenOCD coming from apt, we'll get rid of it
+```shell
+sudo apt purge openocd
+```
+
+Packages you need to have installed to configure OpenOCD:
+```shell
+sudo apt install autotools-dev automake libtool
+```
+
+Now, let's set up a proper OpenOCD installation
+```shell
+# clone the OpenOCD git repo
+git clone https://github.com/ntfreak/openocd.git
+
+cd openocd
+# configure
+./bootstrap
+./configure
+# build
+make -j$(nrpoc)
+# install
+make install -j$(nproc)
+```
