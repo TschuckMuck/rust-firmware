@@ -14,11 +14,8 @@ use cortex_m_rt::entry;
 
 const P0_BASE_ADDR: u32   = 0x50000000;
 
-const OUT_REG_OFFSET: u32 = 0x504;
-const IN_REG_OFFSET: u32  = 0x510;
-
-const P0_PORT_WRITE: u32  = P0_BASE_ADDR + OUT_REG_OFFSET;
-const P0_PORT_READ: u32   = P0_BASE_ADDR + IN_REG_OFFSET;
+const P0_PORT_WRITE: u32  = P0_BASE_ADDR + 0x504;
+const P0_PORT_READ: u32   = P0_BASE_ADDR + 0x510;
 
 const CONFIG_OFFSET: u32  = 0x700;
 
