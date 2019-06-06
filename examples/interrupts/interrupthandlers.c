@@ -1,0 +1,5 @@
+void MyDefaultHandler()
+{}
+
+void TimerHandler()
+{}
