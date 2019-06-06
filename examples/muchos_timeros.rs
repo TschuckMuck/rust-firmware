@@ -41,7 +41,7 @@ const TIMER_TRIGGERED: u32 = TIMER_BASE_ADDR + 0x140;
 const TIMER_TRIGGER: u32 = TIMER_BASE_ADDR + 0x040;
 const TIMER_TIMEOUT: u32 = TIMER_BASE_ADDR + 0x540;
 const TIMER_INTERRUPT: u32 = TIMER_BASE_ADDR + 0x304;
-const TIMERR_DISABLE_INTERRUPT: u32 = TIMER_BASE_ADDR + 0x308;
+const TIMER_DISABLE_INTERRUPT: u32 = TIMER_BASE_ADDR + 0x308;
 const TIMER_CONFIG_TRIGGER: u32 = TIMER_BASE_ADDR + 0x200;
 const CLEAR_TIMER: u32 = TIMER_BASE_ADDR + 0x00C;
 
@@ -55,14 +55,14 @@ const ENABLE_TIMER: u32 = 0x01;
 const DISABLE_TIMER: u32 = 0x01;
 
 const CLOCK_BASE_ADDR: u32 = 0x40000000;
-const CLOCK_START_OSSCILATOR: u32 = CLOCK_BASE_ADDR + 0x000;
+const CLOCK_START_OSCILLATOR: u32 = CLOCK_BASE_ADDR + 0x000;
 const ENABLE_CLOCK: u32 = 0x01;
 
 #[inline(never)]
 fn delay(ms: u32) {
     unsafe {
         // init clock
-        ptr::write_volatile(CLOCK_START_OSSCILATOR as *mut u32, ENABLE_CLOCK);
+        ptr::write_volatile(CLOCK_START_OSCILLATOR as *mut u32, ENABLE_CLOCK);
 
         // init timer
         ptr::write_volatile(TIMER_BIT_MODE as *mut u32, TIMER_32BIT_BITMODE);
@@ -85,7 +85,7 @@ fn delay(ms: u32) {
         ptr::write_volatile(STOP_ZE_TIMER as *mut u32, DISABLE_TIMER);
         ptr::write_volatile(CLEAR_TIMER as *mut u32, 1);
         ptr::write_volatile(TIMER_TRIGGERED as *mut u32, 0);
-        ptr::write_volatile(TIMERR_DISABLE_INTERRUPT as *mut u32, 0);
+        ptr::write_volatile(TIMER_DISABLE_INTERRUPT as *mut u32, 0);
     }
 }
 
