@@ -13,8 +13,8 @@ use cortex_m_rt::entry;
 use core::ptr;
 
 // GPIO pin-specific constants
-const P0_BASE_ADDR: u32   = 0x50000000;
-const CONFIG_OFFSET: u32  = 0x700;
+const P0_BASE_ADDR: u32 = 0x50000000;
+const CONFIG_OFFSET: u32 = 0x700;
 
 const UART_TX_PIN: u32 = 6;
 const UART_TX_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (UART_TX_PIN * 4);
@@ -22,8 +22,8 @@ const UART_TX_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (UART_TX_PIN * 4);
 const UART_RX_PIN: u32 = 8;
 const UART_RX_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (UART_RX_PIN * 4);
 
-const ENABLE_INPUT: u32   = 0x0;
-const ENABLE_OUTPUT: u32  = 0x3;
+const ENABLE_INPUT: u32 = 0x0;
+const ENABLE_OUTPUT: u32 = 0x3;
 
 const LED1_CONFIG: u32 = P0_BASE_ADDR + 0x734;
 const OUT_REGISTER: u32 = P0_BASE_ADDR + 0x504;

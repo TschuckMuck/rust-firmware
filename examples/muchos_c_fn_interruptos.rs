@@ -26,60 +26,154 @@ extern "C" {
 #[link_section = ".vector_table.interrupts"]
 #[no_mangle]
 pub static __INTERRUPTS: [Vector; 47] = [
-    Vector { handler: MyDefaultHandler }, // clock
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: TimerHandler     }, // timer 0
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
-    Vector { handler: MyDefaultHandler },
+    Vector {
+        handler: MyDefaultHandler,
+    }, // clock
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: TimerHandler,
+    }, // timer 0
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
+    Vector {
+        handler: MyDefaultHandler,
+    },
 ];
 
 // GPIO pin-specific constants
-const P0_BASE_ADDR: u32   = 0x50000000;
+const P0_BASE_ADDR: u32 = 0x50000000;
 
-const ENABLE_INPUT: u32   = 0x0;
-const ENABLE_OUTPUT: u32  = 0x3;
+const ENABLE_INPUT: u32 = 0x0;
+const ENABLE_OUTPUT: u32 = 0x3;
 
 const LED1_CONFIG: u32 = P0_BASE_ADDR + 0x734;
 const OUT_REGISTER: u32 = P0_BASE_ADDR + 0x504;

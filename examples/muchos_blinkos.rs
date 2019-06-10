@@ -12,22 +12,22 @@ use core::ptr;
 use cortex_m::asm;
 use cortex_m_rt::entry;
 
-const P0_BASE_ADDR: u32   = 0x50000000;
+const P0_BASE_ADDR: u32 = 0x50000000;
 
-const P0_PORT_WRITE: u32  = P0_BASE_ADDR + 0x504;
-const P0_PORT_READ: u32   = P0_BASE_ADDR + 0x510;
+const P0_PORT_WRITE: u32 = P0_BASE_ADDR + 0x504;
+const P0_PORT_READ: u32 = P0_BASE_ADDR + 0x510;
 
-const CONFIG_OFFSET: u32  = 0x700;
+const CONFIG_OFFSET: u32 = 0x700;
 
-const BUTTON1_PIN: u32    = 11;
-const BUTTON2_PIN: u32    = 12;
-const BUTTON3_PIN: u32    = 24;
-const BUTTON4_PIN: u32    = 25;
+const BUTTON1_PIN: u32 = 11;
+const BUTTON2_PIN: u32 = 12;
+const BUTTON3_PIN: u32 = 24;
+const BUTTON4_PIN: u32 = 25;
 
-const LED1_PIN: u32       = 13;
-const LED2_PIN: u32       = 14;
-const LED3_PIN: u32       = 15;
-const LED4_PIN: u32       = 16;
+const LED1_PIN: u32 = 13;
+const LED2_PIN: u32 = 14;
+const LED3_PIN: u32 = 15;
+const LED4_PIN: u32 = 16;
 
 // 4 bytes per pin for configuration
 const BUTTON1_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (BUTTON1_PIN * 4);
@@ -35,19 +35,19 @@ const BUTTON2_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (BUTTON2_PIN * 4);
 const BUTTON3_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (BUTTON3_PIN * 4);
 const BUTTON4_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (BUTTON4_PIN * 4);
 
-const LED1_CONFIG: u32    = P0_BASE_ADDR + CONFIG_OFFSET + (LED1_PIN * 4);
-const LED2_CONFIG: u32    = P0_BASE_ADDR + CONFIG_OFFSET + (LED2_PIN * 4);
-const LED3_CONFIG: u32    = P0_BASE_ADDR + CONFIG_OFFSET + (LED3_PIN * 4);
-const LED4_CONFIG: u32    = P0_BASE_ADDR + CONFIG_OFFSET + (LED4_PIN * 4);
+const LED1_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (LED1_PIN * 4);
+const LED2_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (LED2_PIN * 4);
+const LED3_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (LED3_PIN * 4);
+const LED4_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (LED4_PIN * 4);
 
 // GPIO PIN constants
-const DISABLE_PIN: u32    = 0x2;
-const ENABLE_INPUT: u32   = 0x0;
-const ENABLE_OUTPUT: u32  = 0x3;
+const DISABLE_PIN: u32 = 0x2;
+const ENABLE_INPUT: u32 = 0x0;
+const ENABLE_OUTPUT: u32 = 0x3;
 
-const DISABLE_PULL: u32   = 0x0;
-const PULL_DOWN: u32      = 0x4;
-const PULL_UP: u32        = 0xC;
+const DISABLE_PULL: u32 = 0x0;
+const PULL_DOWN: u32 = 0x4;
+const PULL_UP: u32 = 0xC;
 
 #[entry]
 fn main() -> ! {
