@@ -45,16 +45,16 @@ const UART_9600_BAUDRATE: u32 = 0x00275000;
 
 // GPIO pin-specific constants
 // P0
-const P0_BASE_ADDR: u32  = 0x50000000;
+const P0_BASE_ADDR: u32 = 0x50000000;
 
 const P0_PORT_WRITE: u32 = P0_BASE_ADDR + 0x504;
-const P0_PORT_READ: u32  = P0_BASE_ADDR + 0x510;
+const P0_PORT_READ: u32 = P0_BASE_ADDR + 0x510;
 
 // P1
-const P1_BASE_ADDR: u32  = 0x50000300;
+const P1_BASE_ADDR: u32 = 0x50000300;
 
 const P1_PORT_WRITE: u32 = P1_BASE_ADDR + 0x504;
-const P1_PORT_READ: u32  = P1_BASE_ADDR + 0x510;
+const P1_PORT_READ: u32 = P1_BASE_ADDR + 0x510;
 
 const CONFIG_OFFSET: u32 = 0x700;
 
@@ -74,15 +74,15 @@ const ROW4_PIN: u32 = 30;
 const ROW5_PIN: u32 = 31;
 
 // Columns on P1
-const COLUMN1_PIN: u32  = 01;
-const COLUMN2_PIN: u32  = 02;
-const COLUMN3_PIN: u32  = 03;
-const COLUMN4_PIN: u32  = 04;
-const COLUMN5_PIN: u32  = 05;
-const COLUMN6_PIN: u32  = 06;
-const COLUMN7_PIN: u32  = 07;
-const COLUMN8_PIN: u32  = 08;
-const COLUMN9_PIN: u32  = 10;
+const COLUMN1_PIN: u32 = 01;
+const COLUMN2_PIN: u32 = 02;
+const COLUMN3_PIN: u32 = 03;
+const COLUMN4_PIN: u32 = 04;
+const COLUMN5_PIN: u32 = 05;
+const COLUMN6_PIN: u32 = 06;
+const COLUMN7_PIN: u32 = 07;
+const COLUMN8_PIN: u32 = 08;
+const COLUMN9_PIN: u32 = 10;
 const COLUMN10_PIN: u32 = 11;
 const COLUMN11_PIN: u32 = 12;
 const COLUMN12_PIN: u32 = 13;
@@ -95,15 +95,15 @@ const ROW3_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (ROW3_PIN * 4);
 const ROW4_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (ROW4_PIN * 4);
 const ROW5_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (ROW5_PIN * 4);
 
-const COLUMN1_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN1_PIN  * 4);
-const COLUMN2_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN2_PIN  * 4);
-const COLUMN3_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN3_PIN  * 4);
-const COLUMN4_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN4_PIN  * 4);
-const COLUMN5_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN5_PIN  * 4);
-const COLUMN6_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN6_PIN  * 4);
-const COLUMN7_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN7_PIN  * 4);
-const COLUMN8_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN8_PIN  * 4);
-const COLUMN9_CONFIG: u32  = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN9_PIN  * 4);
+const COLUMN1_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN1_PIN * 4);
+const COLUMN2_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN2_PIN * 4);
+const COLUMN3_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN3_PIN * 4);
+const COLUMN4_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN4_PIN * 4);
+const COLUMN5_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN5_PIN * 4);
+const COLUMN6_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN6_PIN * 4);
+const COLUMN7_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN7_PIN * 4);
+const COLUMN8_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN8_PIN * 4);
+const COLUMN9_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN9_PIN * 4);
 const COLUMN10_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN10_PIN * 4);
 const COLUMN11_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN11_PIN * 4);
 const COLUMN12_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN12_PIN * 4);
@@ -112,19 +112,13 @@ const COLUMN14_CONFIG: u32 = P1_BASE_ADDR + CONFIG_OFFSET + (COLUMN14_PIN * 4);
 
 const LEDS_CONFIG: u32 = P0_BASE_ADDR + CONFIG_OFFSET + (LEDS_PIN * 4);
 
-const ENABLE_INPUT: u32   = 0x0;
-const ENABLE_OUTPUT: u32  = 0x3;
+const ENABLE_INPUT: u32 = 0x0;
+const ENABLE_OUTPUT: u32 = 0x3;
 
-const PULL_DOWN: u32      = 0x4;
-const PULL_UP: u32        = 0xC;
+const PULL_DOWN: u32 = 0x4;
+const PULL_UP: u32 = 0xC;
 
-const ROW_PINS: [u32; ROWS as usize] = [
-    ROW1_PIN,
-    ROW2_PIN,
-    ROW3_PIN,
-    ROW4_PIN,
-    ROW5_PIN,
-];
+const ROW_PINS: [u32; ROWS as usize] = [ROW1_PIN, ROW2_PIN, ROW3_PIN, ROW4_PIN, ROW5_PIN];
 
 const COLUMN_PINS: [u32; COLUMNS as usize] = [
     COLUMN1_PIN,
@@ -143,16 +137,16 @@ const COLUMN_PINS: [u32; COLUMNS as usize] = [
     COLUMN14_PIN,
 ];
 
-static mut keys: [u8; (COLUMNS*ROWS) as usize] = [0; (COLUMNS*ROWS) as usize];
+static mut keys: [u8; (COLUMNS * ROWS) as usize] = [0; (COLUMNS * ROWS) as usize];
 
-const KEY_MAP: [u8; (COLUMNS*ROWS) as usize] = [
-    0x1B, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x2D, 0x3D, 0x08,
-    0x09, 0x71, 0x77, 0x65, 0x72, 0x74, 0x79, 0x75, 0x69, 0x6F, 0x70, 0x5B, 0x5D, 0x5C,
-//  CAPS                                                                    NONE
+const KEY_MAP: [u8; (COLUMNS * ROWS) as usize] = [
+    0x1B, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x2D, 0x3D, 0x08, 0x09, 0x71,
+    0x77, 0x65, 0x72, 0x74, 0x79, 0x75, 0x69, 0x6F, 0x70, 0x5B, 0x5D, 0x5C,
+    //  CAPS                                                                    NONE
     0x00, 0x61, 0x73, 0x64, 0x66, 0x67, 0x68, 0x6A, 0x6B, 0x6C, 0x3B, 0x27, 0x00, 0x0D,
-//  SHFT  NONE                                                              NONE  SHFT
+    //  SHFT  NONE                                                              NONE  SHFT
     0x00, 0x00, 0x7A, 0x78, 0x63, 0x76, 0x62, 0x6E, 0x6D, 0x2C, 0x2E, 0x2F, 0x00, 0x00,
-//  RCTL  WNDW  PAGE  NONE  NONE  SPAC  NONE  NONE  NONE  NONE  LALT    FN  RALT  LCTL
+    //  RCTL  WNDW  PAGE  NONE  NONE  SPAC  NONE  NONE  NONE  NONE  LALT    FN  RALT  LCTL
     0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 ];
 
@@ -236,15 +230,15 @@ fn main() -> ! {
         ptr::write_volatile(ROW4_CONFIG as *mut u32, ENABLE_INPUT | PULL_DOWN);
         ptr::write_volatile(ROW5_CONFIG as *mut u32, ENABLE_INPUT | PULL_DOWN);
 
-        ptr::write_volatile(COLUMN1_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN2_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN3_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN4_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN5_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN6_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN7_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN8_CONFIG as *mut u32,  ENABLE_OUTPUT);
-        ptr::write_volatile(COLUMN9_CONFIG as *mut u32,  ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN1_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN2_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN3_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN4_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN5_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN6_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN7_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN8_CONFIG as *mut u32, ENABLE_OUTPUT);
+        ptr::write_volatile(COLUMN9_CONFIG as *mut u32, ENABLE_OUTPUT);
         ptr::write_volatile(COLUMN10_CONFIG as *mut u32, ENABLE_OUTPUT);
         ptr::write_volatile(COLUMN11_CONFIG as *mut u32, ENABLE_OUTPUT);
         ptr::write_volatile(COLUMN12_CONFIG as *mut u32, ENABLE_OUTPUT);
