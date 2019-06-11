@@ -1,0 +1,5 @@
+[book]
+authors = ["Nicola Coretti"]
+multilingual = false
+src = "src"
+title = "YAK - Yet Another Keyboard"
