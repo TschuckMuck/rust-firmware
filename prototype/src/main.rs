@@ -1,11 +1,6 @@
 #![no_std]
 #![no_main]
-
-// pick a panicking behavior
-extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to catch panics
-                         // extern crate panic_abort; // requires nightly
-                         // extern crate panic_itm; // logs messages over ITM; requires ITM support
-                         // extern crate panic_semihosting; // logs messages to the host stderr; requires a debugger
+extern crate panic_halt;
 
 use cortex_m::asm;
 use cortex_m_rt::entry;
@@ -204,8 +199,6 @@ fn delay(us: u32) {
 // TODO: Setup peripheral oscillator clock for UART so that UART is stable and not lossy
 #[entry]
 fn main() -> ! {
-    asm::nop(); // To not have main optimize to abort in release mode, remove when you add code
-
     unsafe {
         ptr::write_volatile(UART_TX_CONFIG as *mut u32, ENABLE_OUTPUT);
         ptr::write_volatile(UART_RX_CONFIG as *mut u32, ENABLE_INPUT);
