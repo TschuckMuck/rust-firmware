@@ -3,16 +3,14 @@ use core::convert::Into;
 use core::marker::PhantomData;
 use core::ptr;
 
-///! Marker trait types capable of representing a register
+// Marker trait types capable of representing a register
 pub trait RegisterType {}
 pub trait ValueType {}
 
 impl RegisterType for u8 {}
 impl RegisterType for u16 {}
 impl RegisterType for u32 {}
-// TODO consider implementing for u64 and usize
-// impl RegisterType for u64 {}
-// impl RegisterType for usize {}
+// TODO: consider implementing for u64 and usize
 
 pub trait Read<T: RegisterType> {
     fn read(&self) -> T;
@@ -21,8 +19,6 @@ pub trait Read<T: RegisterType> {
 pub trait Write<T: RegisterType> {
     fn write(&mut self, value: T);
 }
-
-pub trait ReadWrite<T: RegisterType>: Read<T> + Write<T> {}
 
 pub struct Register<T: RegisterType> {
     address: usize,
@@ -83,7 +79,7 @@ impl<T: RegisterType> Read<T> for ReadOnlyRegister<T> {
     }
 }
 
-struct WriteOnlyRegister<T: RegisterType> {
+pub struct WriteOnlyRegister<T: RegisterType> {
     register: Register<T>,
 }
 
@@ -114,6 +110,8 @@ mod tests {
         assert_eq!(reg.read(), 0);
         memory_mapped_io_register = 0xFF;
         assert_eq!(reg.read(), 0xFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFF);
     }
 
     #[test]
@@ -136,6 +134,8 @@ mod tests {
         assert_eq!(reg.read(), 0);
         memory_mapped_io_register = 0xFFFF;
         assert_eq!(reg.read(), 0xFFFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFFFF);
     }
 
     #[test]
@@ -158,6 +158,8 @@ mod tests {
         assert_eq!(reg.read(), 0);
         memory_mapped_io_register = 0xFFFFFFFF;
         assert_eq!(reg.read(), 0xFFFFFFFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFFFFFFFF);
     }
 
     #[test]
@@ -165,6 +167,78 @@ mod tests {
         let memory_mapped_io_register: u32 = 0;
         let address = (&memory_mapped_io_register as *const u32) as usize;
         let mut reg: Register<u32> = Register::new(address);
+
+        assert_eq!(memory_mapped_io_register, 0);
+        reg.write(0xFFFFFFFF);
+        assert_eq!(memory_mapped_io_register, 0xFFFFFFFF);
+    }
+
+    #[test]
+    fn u8_read_only_register() {
+        let mut memory_mapped_io_register: u8 = 0;
+        let address = (&memory_mapped_io_register as *const u8) as usize;
+        let reg: ReadOnlyRegister<u8> = ReadOnlyRegister::new(address);
+
+        assert_eq!(reg.read(), 0);
+        memory_mapped_io_register = 0xFF;
+        assert_eq!(reg.read(), 0xFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFF);
+    }
+
+    #[test]
+    fn u16_read_only_register() {
+        let mut memory_mapped_io_register: u16 = 0;
+        let address = (&memory_mapped_io_register as *const u16) as usize;
+        let reg: ReadOnlyRegister<u16> = ReadOnlyRegister::new(address);
+
+        assert_eq!(reg.read(), 0);
+        memory_mapped_io_register = 0xFFFF;
+        assert_eq!(reg.read(), 0xFFFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFFFF);
+    }
+
+    #[test]
+    fn u32_read_only_register() {
+        let mut memory_mapped_io_register: u32 = 0;
+        let address = (&memory_mapped_io_register as *const u32) as usize;
+        let reg: ReadOnlyRegister<u32> = ReadOnlyRegister::new(address);
+
+        assert_eq!(reg.read(), 0);
+        memory_mapped_io_register = 0xFFFFFFFF;
+        assert_eq!(reg.read(), 0xFFFFFFFF);
+        // Dummy assert to read the variable to get rid of a warning
+        assert_eq!(memory_mapped_io_register, 0xFFFFFFFF);
+    }
+
+    #[test]
+    fn u8_write_only_register() {
+        let memory_mapped_io_register: u8 = 0;
+        let address = (&memory_mapped_io_register as *const u8) as usize;
+        let mut reg: WriteOnlyRegister<u8> = WriteOnlyRegister::new(address);
+
+        assert_eq!(memory_mapped_io_register, 0);
+        reg.write(0xFF);
+        assert_eq!(memory_mapped_io_register, 0xFF);
+    }
+
+    #[test]
+    fn u16_write_only_register() {
+        let memory_mapped_io_register: u16 = 0;
+        let address = (&memory_mapped_io_register as *const u16) as usize;
+        let mut reg: WriteOnlyRegister<u16> = WriteOnlyRegister::new(address);
+
+        assert_eq!(memory_mapped_io_register, 0);
+        reg.write(0xFFFF);
+        assert_eq!(memory_mapped_io_register, 0xFFFF);
+    }
+
+    #[test]
+    fn u32_write_only_register() {
+        let memory_mapped_io_register: u32 = 0;
+        let address = (&memory_mapped_io_register as *const u32) as usize;
+        let mut reg: WriteOnlyRegister<u32> = WriteOnlyRegister::new(address);
 
         assert_eq!(memory_mapped_io_register, 0);
         reg.write(0xFFFFFFFF);
