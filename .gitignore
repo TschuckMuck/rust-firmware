@@ -1,2 +1,9 @@
 target/**
+.idea/
+doc/datasheets/nRF5280_dongle_User_Guide.pdf
+doc/datasheets/nRF52840_devkit_User_Guide.pdf
+doc/datasheets/nRF52840_v1_1.pdf
 openocd.log
+firmware/target/
+prototype/target/
+Cargo.lock
