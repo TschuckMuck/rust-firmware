@@ -4,12 +4,17 @@ use core::ptr;
 
 /// Marker trait types capable of representing a register
 pub trait RegisterType {}
+
 pub trait ValueType {}
 
 impl RegisterType for u8 {}
+
 impl RegisterType for u16 {}
+
 impl RegisterType for u32 {}
+
 impl RegisterType for u64 {}
+
 impl RegisterType for usize {}
 
 pub trait Read<T: RegisterType> {
@@ -43,7 +48,7 @@ impl<T: RegisterType, V: Into<T>> TypedRegister<T, V> {
 impl<T: RegisterType> Register<T> {
     pub fn new(address: usize) -> Self {
         Register {
-            address: address,
+            address,
             register_type: PhantomData,
         }
     }
@@ -100,6 +105,7 @@ impl<T: RegisterType> Write<T> for WriteOnlyRegister<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
     // TODO: consider rewriting test based on Register type
     #[test]
     fn u8_memory_mapped_io_register_read() {
