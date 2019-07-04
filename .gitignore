@@ -1,4 +1,4 @@
-target/**
+*/target/**
 .idea/
 doc/datasheets/nRF5280_dongle_User_Guide.pdf
 doc/datasheets/nRF52840_devkit_User_Guide.pdf
