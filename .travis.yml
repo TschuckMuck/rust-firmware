@@ -3,7 +3,7 @@ language: rust
 before_install: set -e
 
 install:
-  - sudo apt install gcc-arm-none-eabi
+  - sudo apt install disco
   - rustup target add thumbv7em-none-eabihf
 
 script:
