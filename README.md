@@ -12,7 +12,7 @@ The yak firmware repository is structured as follows:
 
 
 # License
-The code of this project is licensed under either of
+Licensed under either of
 
 - Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
   http://www.apache.org/licenses/LICENSE-2.0)
