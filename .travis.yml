@@ -1,0 +1,29 @@
+language: rust
+
+before_install: set -e
+
+install:
+  - apt install gcc-arm-none-eabi
+  - rustup target add thumbv7em-none-eabihf
+
+script:
+  - cargo test
+  - cargo build
+  - cargo doc
+  - cd firmware
+  - cargo build
+  - cargo doc
+  - cd ../prototype
+  - cargo build
+  - cargo doc
+  - cd ..
+  - cd doc
+  - mdbook build
+
+cache: cargo
+
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+  - chmod -R a+r $HOME/.cargo
+
+
