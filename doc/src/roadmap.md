@@ -4,26 +4,25 @@
 
 ### Mark 1
 * Reworked PCB
-* Break out Board
+* Breakout Board
 * Serial Console UART (Output)
 * Scan Matrix
 
 
-## To be planed
+## To be planned
 * Serial Console UART (Input)
 * HID (USB - Keyboard)
-* BACKLIGHT LEDS
-* Backlight LED's
-* Backlighrt LED's RGB
+* Backlight LEDs
+* Backlight LEDs RGB
 * CLI
 * Serial
 * Virtual Serial (USB)
 * Flash driver -> store persistent config
 
 
-## Featrue Ideas
+## Future Ideas
 * Layering
-* RGB Leds
+* RGB LEDs
 * Serial console via USB for configuration etc.
-* Leds (Framebuffer based control)
+* LEDs (Framebuffer-based control)
 
