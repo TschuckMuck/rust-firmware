@@ -1,8 +1,9 @@
 # The YAK Keyboard
-The YAK keyboard is an DIY open source keyboard based on the famous GH60 Keyboard. 
+The YAK keyboard is a DIY open source keyboard based on the famous GH60 Keyboard. 
 
 ## About This Book
-explain structrue and purpose
+The purpose of the book is to document the tools and resources used to develop this keyboard, and
+to document the development structure that we use to develop the keyboard.
 
 ## YAK As a Platform Management Summary
 * ARM CortextM4
