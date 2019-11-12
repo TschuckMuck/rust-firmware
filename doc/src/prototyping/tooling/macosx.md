@@ -18,7 +18,7 @@ user@host ~$ brew cask install segger-jlink
 ```
 ## Nordic nRF5x command line tools
 ```shell
-user@host ~$ brew cask install nordic-nrf5x-command-line-tools
+user@host ~$  brew cask install nordic-nrf-command-line-tools
 ```
 ## Open Ocd
 ```shell
