@@ -7,7 +7,7 @@ install:
   - rustup target add thumbv7em-none-eabihf
 
 script:
-  - cd yak
+  - cd hal
   - cargo test
   - cargo build
   - cargo doc

@@ -1,5 +1,5 @@
 [package]
-name = "yak"
+name = "hal"
 authors = ["Nicola Coretti <nico.coretti@gmail.com>"]
 edition = "2018"
 version = "0.1.0"
@@ -7,6 +7,6 @@ readme = "README.md"
 license = "MIT OR Apache-2.0"
 
 [lib]
-name = "yak"
+name = "hal"
 path = "src/lib.rs"
 
