@@ -5,6 +5,7 @@ before_install: set -e
 install:
   - sudo apt-get install gcc-arm-none-eabi
   - rustup target add thumbv7em-none-eabihf
+  - cargo install mdbook
 
 script:
   - cd hal
