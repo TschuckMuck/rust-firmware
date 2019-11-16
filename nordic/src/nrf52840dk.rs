@@ -79,24 +79,24 @@ impl From<GpIo> for Output {
     }
 }
 
-impl hal::gpio::Input for Input {
+impl hal::gpio::In for Input {
     fn read(&self) -> bool {
         ((self.gpio.input.read() >> self.gpio.pin) & 0x1) == 0
     }
 }
 
-impl hal::gpio::Output for Output {
-    fn set(&mut self) {
+impl hal::gpio::Out for Output {
+    fn on(&mut self) {
         self.gpio.clear.write(1 << self.gpio.pin);
     }
-    fn clear(&mut self) {
+    fn off(&mut self) {
         self.gpio.set.write(1 << self.gpio.pin);
     }
     fn toggle(&mut self) {
         let is_set = (self.gpio.input.read() & (1u32 >> self.gpio.pin)) > 0;
         match is_set {
-            true => self.clear(),
-            false => self.set(),
+            true => self.off(),
+            false => self.on(),
         };
     }
 }
