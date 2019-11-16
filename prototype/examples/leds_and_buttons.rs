@@ -14,35 +14,35 @@ use core::ptr;
 use cortex_m::asm;
 use cortex_m_rt::entry;
 
-use hal::gpio::{Input, Output};
-use nordic::nrf52840dk;
+use hal::gpio::{In, Out};
+use nordic::nrf52840dk::{GpIo, Input, Output, Port};
 
 #[entry]
 fn main() -> ! {
-    let buttons: [nrf52840dk::Input; 4] = [
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::BUTTON1_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::BUTTON2_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::BUTTON3_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::BUTTON4_PIN).into(),
+    let buttons: [Input; 4] = [
+        GpIo::new(Port::P0, GpIo::BUTTON1_PIN).into(),
+        GpIo::new(Port::P0, GpIo::BUTTON2_PIN).into(),
+        GpIo::new(Port::P0, GpIo::BUTTON3_PIN).into(),
+        GpIo::new(Port::P0, GpIo::BUTTON4_PIN).into(),
     ];
 
-    let mut leds: [nrf52840dk::Output; 4] = [
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::LED1_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::LED2_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::LED3_PIN).into(),
-        nrf52840dk::GpIo::new(nrf52840dk::Port::P0, nrf52840dk::GpIo::LED4_PIN).into(),
+    let mut leds: [Output; 4] = [
+        GpIo::new(Port::P0, GpIo::LED1_PIN).into(),
+        GpIo::new(Port::P0, GpIo::LED2_PIN).into(),
+        GpIo::new(Port::P0, GpIo::LED3_PIN).into(),
+        GpIo::new(Port::P0, GpIo::LED4_PIN).into(),
     ];
 
     for mut led in leds.iter_mut() {
-        led.clear();
+        led.off();
     }
 
     loop {
         for index in 0..4 {
             if buttons[index].read() {
-                leds[index].set();
+                leds[index].on();
             } else {
-                leds[index].clear();
+                leds[index].off();
             }
         }
     }
