@@ -27,13 +27,15 @@ pub enum Parity {
     Odd,
 }
 
+/// Configuration settings of a `UART` device.
 pub struct Configuration {
-    pub baud_rate: Baudrate,
+    pub baud_rate: BaudRate,
     pub stop_bits: StopBits,
     pub parity: Parity,
     pub hw_flow_control: bool,
 }
 
-pub trait Uart: ::io::Write + ::io::Read {
+/// A trait for object which can be configured as `UART`.
+pub trait Configure {
     fn configure(&self, cfg: Configuration);
 }
