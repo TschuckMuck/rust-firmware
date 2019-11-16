@@ -1,3 +1,4 @@
+//! Blinking led example using rust unsafe code and polling a timer.
 #![no_std]
 #![no_main]
 

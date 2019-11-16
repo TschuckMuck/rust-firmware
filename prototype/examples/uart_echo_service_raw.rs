@@ -1,3 +1,4 @@
+//! This application configures a uart which will echo all data received via rx to tx.
 #![no_std]
 #![no_main]
 
