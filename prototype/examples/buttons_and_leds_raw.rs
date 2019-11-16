@@ -1,3 +1,6 @@
+//! This example enables the 4 leds on the nrf52840dk and the 4 buttons
+//! while a button is pressed the associted led will light up.
+//! It does all of this using rust unsafe code.
 #![no_std]
 #![no_main]
 
