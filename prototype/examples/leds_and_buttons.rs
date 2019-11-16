@@ -8,32 +8,28 @@ extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to c
                          // extern crate panic_abort; // requires nightly
                          // extern crate panic_itm; // logs messages over ITM; requires ITM support
                          // extern crate panic_semihosting; // logs messages to the host stderr; requires a debugger
-
-use core::ptr;
-
-use cortex_m::asm;
 use cortex_m_rt::entry;
 
 use hal::gpio::{In, Out};
-use nordic::nrf52840dk::{GpIo, Input, Output, Port};
+use nordic::nrf52840dk::{GpIo, Input, Output, Pin, Port};
 
 #[entry]
 fn main() -> ! {
     let buttons: [Input; 4] = [
-        GpIo::new(Port::P0, GpIo::BUTTON1_PIN).into(),
-        GpIo::new(Port::P0, GpIo::BUTTON2_PIN).into(),
-        GpIo::new(Port::P0, GpIo::BUTTON3_PIN).into(),
-        GpIo::new(Port::P0, GpIo::BUTTON4_PIN).into(),
+        GpIo::new(Port::P0, Pin::P11).into(),
+        GpIo::new(Port::P0, Pin::P12).into(),
+        GpIo::new(Port::P0, Pin::P24).into(),
+        GpIo::new(Port::P0, Pin::P25).into(),
     ];
 
     let mut leds: [Output; 4] = [
-        GpIo::new(Port::P0, GpIo::LED1_PIN).into(),
-        GpIo::new(Port::P0, GpIo::LED2_PIN).into(),
-        GpIo::new(Port::P0, GpIo::LED3_PIN).into(),
-        GpIo::new(Port::P0, GpIo::LED4_PIN).into(),
+        GpIo::new(Port::P0, Pin::P13).into(),
+        GpIo::new(Port::P0, Pin::P14).into(),
+        GpIo::new(Port::P0, Pin::P15).into(),
+        GpIo::new(Port::P0, Pin::P16).into(),
     ];
 
-    for mut led in leds.iter_mut() {
+    for led in leds.iter_mut() {
         led.off();
     }
 
