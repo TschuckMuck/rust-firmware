@@ -12,6 +12,7 @@ cortex-m = "0.5.8"
 cortex-m-rt = "0.6.5"
 panic-halt = "0.2.0"
 hal = { version = "0.1", path = "../hal" }
+nordic = { version = "0.1", path = "../nordic" }
 
 
 [profile.release]
