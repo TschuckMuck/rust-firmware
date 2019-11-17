@@ -1,7 +1,4 @@
 pub enum BaudRate {
-    Baud110,
-    Baud150,
-    Baud300,
     Baud1200,
     Baud2400,
     Baud4800,
@@ -13,6 +10,7 @@ pub enum BaudRate {
     Baud230400,
     Baud460800,
     Baud921600,
+    Baud1M,
     Other(usize),
 }
 
@@ -37,5 +35,5 @@ pub struct Configuration {
 
 /// A trait for object which can be configured as `UART`.
 pub trait Configure {
-    fn configure(&self, cfg: Configuration);
+    fn configure(&mut self, cfg: Configuration);
 }

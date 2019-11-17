@@ -11,7 +11,7 @@ extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to c
 use cortex_m_rt::entry;
 
 use hal::gpio::{In, Out};
-use nordic::nrf52840dk::{GpIo, Input, Output, Pin, Port};
+use nordic::nrf52840::{GpIo, Input, Output, Pin, Port};
 
 #[entry]
 fn main() -> ! {
