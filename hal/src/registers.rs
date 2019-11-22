@@ -4,17 +4,12 @@ use core::ptr;
 
 /// Marker trait types capable of representing a register
 pub trait RegisterType {}
-
 pub trait ValueType {}
 
 impl RegisterType for u8 {}
-
 impl RegisterType for u16 {}
-
 impl RegisterType for u32 {}
-
 impl RegisterType for u64 {}
-
 impl RegisterType for usize {}
 
 pub trait Read<T: RegisterType> {
@@ -36,16 +31,19 @@ struct TypedRegister<T: RegisterType, V: Into<T>> {
 }
 
 impl<T: RegisterType, V: Into<T>> TypedRegister<T, V> {
+    #[inline(always)]
     fn write(&mut self, value: V) {
         self.reg.write(value.into());
     }
 
+    #[inline(always)]
     fn read(&self) -> T {
         self.reg.read()
     }
 }
 
 impl<T: RegisterType> Register<T> {
+    #[inline(always)]
     pub fn new(address: usize) -> Self {
         Register {
             address,
@@ -55,12 +53,14 @@ impl<T: RegisterType> Register<T> {
 }
 
 impl<T: RegisterType> Read<T> for Register<T> {
+    #[inline(always)]
     fn read(&self) -> T {
         unsafe { ptr::read_volatile(self.address as *const T) }
     }
 }
 
 impl<T: RegisterType> Write<T> for Register<T> {
+    #[inline(always)]
     fn write(&mut self, value: T) {
         unsafe { ptr::write_volatile(self.address as *mut T, value) };
     }
@@ -71,6 +71,7 @@ pub struct ReadOnlyRegister<T: RegisterType> {
 }
 
 impl<T: RegisterType> ReadOnlyRegister<T> {
+    #[inline(always)]
     pub fn new(address: usize) -> Self {
         ReadOnlyRegister {
             register: Register::new(address),
@@ -79,6 +80,7 @@ impl<T: RegisterType> ReadOnlyRegister<T> {
 }
 
 impl<T: RegisterType> Read<T> for ReadOnlyRegister<T> {
+    #[inline(always)]
     fn read(&self) -> T {
         self.register.read()
     }
@@ -89,6 +91,7 @@ pub struct WriteOnlyRegister<T: RegisterType> {
 }
 
 impl<T: RegisterType> WriteOnlyRegister<T> {
+    #[inline(always)]
     pub fn new(address: usize) -> Self {
         WriteOnlyRegister {
             register: Register::new(address),
@@ -97,6 +100,7 @@ impl<T: RegisterType> WriteOnlyRegister<T> {
 }
 
 impl<T: RegisterType> Write<T> for WriteOnlyRegister<T> {
+    #[inline(always)]
     fn write(&mut self, value: T) {
         self.register.write(value)
     }
