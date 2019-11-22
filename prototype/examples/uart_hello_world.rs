@@ -8,16 +8,20 @@ extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to c
                          // extern crate panic_semihosting; // logs messages to the host stderr; requires a debugger
 use cortex_m_rt::entry;
 
-use hal::gpio::{In, Out};
+use hal::gpio::{Input, Output};
 use hal::io::{Read, Write};
 use hal::uart::BaudRate::Baud115200;
 use hal::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
-use nordic::nrf52840::{GpIo, Input, Output, Pin, Port, Uart};
+use nordic::nrf52::nrf52840;
+use nordic::nrf52::nrf52840::{GpIo, Pin, Port, Uart};
 
 #[entry]
 fn main() -> ! {
     let mut error_count = 0;
-    let mut uart = Uart::new(GpIo::new(Port::P0, Pin::P8), GpIo::new(Port::P0, Pin::P6));
+    let mut uart = Uart::new(
+        nrf52840::GpIo::new(Port::P0, Pin::P8),
+        nrf52840::GpIo::new(Port::P0, Pin::P6),
+    );
     uart.configure(Configuration {
         baud_rate: Baud115200,
         stop_bits: StopBits::One,

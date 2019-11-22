@@ -11,8 +11,6 @@ pub trait Read {
 
 pub trait Write {
     fn write_byte(&mut self, byte: u8) -> Result<(), IoError>;
-
     fn write(&mut self, buf: &[u8]) -> Result<usize, IoError>;
-
     fn flush(&mut self) -> Result<(), IoError>;
 }
