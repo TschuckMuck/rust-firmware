@@ -10,19 +10,20 @@ extern crate panic_halt; // you can put a breakpoint on `rust_begin_unwind` to c
                          // extern crate panic_semihosting; // logs messages to the host stderr; requires a debugger
 use cortex_m_rt::entry;
 
-use hal::gpio::{In, Out};
-use nordic::nrf52840::{GpIo, Input, Output, Pin, Port};
+use hal::gpio::{Input, Output};
+use nordic::nrf52::nrf52840;
+use nordic::nrf52::nrf52840::{GpIo, Pin, Port};
 
 #[entry]
 fn main() -> ! {
-    let buttons: [Input; 4] = [
+    let buttons: [nrf52840::Input; 4] = [
         GpIo::new(Port::P0, Pin::P11).into(),
         GpIo::new(Port::P0, Pin::P12).into(),
         GpIo::new(Port::P0, Pin::P24).into(),
         GpIo::new(Port::P0, Pin::P25).into(),
     ];
 
-    let mut leds: [Output; 4] = [
+    let mut leds: [nrf52840::Output; 4] = [
         GpIo::new(Port::P0, Pin::P13).into(),
         GpIo::new(Port::P0, Pin::P14).into(),
         GpIo::new(Port::P0, Pin::P15).into(),

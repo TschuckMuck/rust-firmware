@@ -351,13 +351,13 @@ impl From<GpIo> for Output {
     }
 }
 
-impl hal::gpio::In for Input {
+impl hal::gpio::Input for Input {
     fn read(&self) -> bool {
         self.gpio.read()
     }
 }
 
-impl hal::gpio::Out for Output {
+impl hal::gpio::Output for Output {
     fn on(&mut self) {
         self.gpio.clear();
     }
