@@ -1,5 +1,5 @@
 [package]
-name = "yak-nrf52840MDK-firmware"
+name = "yak-prototype-firmware"
 authors = ["Nicola Coretti <nico.coretti@gmail.com>"]
 edition = "2018"
 version = "0.1.0"
