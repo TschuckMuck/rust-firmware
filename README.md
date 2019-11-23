@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/YetAnotherKeyboard/firmware.svg?branch=master)](https://travis-ci.org/YetAnotherKeyboard/firmware)
+[![Last Commit](https://img.shields.io/github/last-commit/YetAnotherKeyboard/firmware)](https://travis-ci.org/YetAnotherKeyboard/firmware)
 # The YAK Firmware
 
 The yak firmware repository is structured as follows:
