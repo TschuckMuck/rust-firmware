@@ -27,11 +27,13 @@ def flash_hex_file(hexfile):
     if result.returncode != 0:
         raise Exception("Could not flash hex file!")
 
+
 def start_debugger(elf_file):
     shell = os.environ['SHELL']
     result = run(f'openocd -f openocd.cfg --log_output openocd.log & arm-none-eabi-gdb -q -x openocd.gdb {elf_file}', shell=True)
     if result.returncode != 0:
         raise Exception("Could start openocd and/or gdb!")
+
 
 if __name__ == '__main__':
     elf_file = Path(sys.argv[1]).resolve()
