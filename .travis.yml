@@ -36,7 +36,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  local-dir: .doc/book
+  local-dir: ./doc/book
   keep-history: false
   on:
     branch: master
