@@ -80,12 +80,12 @@ fn delay(us: u32) {
     }
 }
 
-use hal::gpio::{Input, Output};
-use hal::io::{Read, Write};
-use hal::uart::BaudRate::Baud115200;
-use hal::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
 use nordic::nrf52::nrf52840;
 use nordic::nrf52::nrf52840::{GpIo, Pin, Port, Uart};
+use nostd::gpio::{Input, Output};
+use nostd::io::{Read, Write};
+use nostd::uart::BaudRate::Baud115200;
+use nostd::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
 
 // TODO: Setup peripheral oscillator clock for UART so that UART is stable and not lossy
 #[entry]

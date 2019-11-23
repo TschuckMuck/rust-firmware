@@ -1,8 +1,8 @@
 use core::convert::From;
 use core::convert::Into;
-use hal::io;
-use hal::registers::{Read, Register, Write};
-use hal::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
+use nostd::io;
+use nostd::registers::{Read, Register, Write};
+use nostd::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
 
 pub enum Port {
     P0,
@@ -207,7 +207,7 @@ impl Uart {
     }
 }
 
-impl ::hal::uart::Configure for Uart {
+impl ::nostd::uart::Configure for Uart {
     fn configure(&mut self, cfg: Configuration) {
         self.baudrate(cfg.baud_rate);
         let hw_flow_control: u32 = match cfg.hw_flow_control {
@@ -351,13 +351,13 @@ impl From<GpIo> for Output {
     }
 }
 
-impl hal::gpio::Input for Input {
+impl nostd::gpio::Input for Input {
     fn read(&self) -> bool {
         self.gpio.read()
     }
 }
 
-impl hal::gpio::Output for Output {
+impl nostd::gpio::Output for Output {
     fn on(&mut self) {
         self.gpio.clear();
     }

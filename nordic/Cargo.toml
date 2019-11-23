@@ -11,5 +11,5 @@ name = "nordic"
 path = "src/lib.rs"
 
 [dependencies]
-hal = { version = "0.1", path = "../hal" }
+nostd = { version = "0.1", path = "../nostd" }
 
