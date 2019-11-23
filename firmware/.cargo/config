@@ -1,5 +1,5 @@
 [target.thumbv7em-none-eabihf]
-runner = "python3 runner.py"
+runner = "python3 ../tools/runners/nrf.py"
 
 rustflags = [
   # LLD (shipped with the Rust toolchain) is used as the default linker

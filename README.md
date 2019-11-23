@@ -11,6 +11,7 @@ The yak firmware repository is structured as follows:
 | nordic    | library create | nordic/nrf specific functionality |
 | nostd     | library create | hw platform indenpent no_std code which will be shared between the crates |
 | prototype | binaries | Firmware and examples for the nrf52840MDK |
+| tools | misc | all kinds off tools and scripts for the yak and the yak development |
 
 
 # License
