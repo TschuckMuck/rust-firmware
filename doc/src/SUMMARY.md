@@ -6,5 +6,6 @@
     - [Windows](./prototyping/tooling/windows.md)
     - [MacOsx](./prototyping/tooling/macosx.md)
 - [Roadmap](./roadmap.md)
+- [Resources](./resources.md)
 
 
