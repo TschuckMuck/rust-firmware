@@ -8,18 +8,22 @@ install:
   - cargo install --force mdbook
 
 script:
+  # hal create
   - cd hal
-  - cargo test
-  - cargo build
+  - cargo build --all-targets
   - cargo doc
+  # firmware crate
   - cd ../firmware
-  - cargo build
+  - cargo build --bins --examples
   - cargo doc
+  # prototype crate
   - cd ../prototype
-  - cargo build
+  - cargo build --bins --examples
   - cargo doc
+  # documentation / book
   - cd ..
   - cd doc
+  - mdbook test
   - mdbook build
 
 cache: cargo
