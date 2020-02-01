@@ -1,36 +1,42 @@
 # The YAK Keyboard
-The YAK keyboard is a DIY open source keyboard based on the famous GH60 Keyboard. 
+The YAK keyboard is a NRF52840 based open source 60% DYI keyboard with rust firmware.
 
-## About This Book
-The purpose of the book is to document the tools and resources used to develop this keyboard, and
-to document the development structure that we use to develop the keyboard.
-
-## YAK As a Platform Management Summary
+## NRF52840 Overview
 * ARM CortextM4
-* Embedded Rust
-* Bluetooth
 * 256 KB RAM
-* 1 MB ROM (Flash)
-* LEDS
+* 1 MB Flash
+* Bluetooth
+* USB
 
-## The Hardware
-* [Github-Organization](https://github.com/YetAnotherKeyboard)
-* [PCB](https://github.com/YetAnotherKeyboard/PCB)
-* [Firmware](https://github.com/YetAnotherKeyboard/firmware)
+[more details](https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF52840)
 
-# Resources
+## Idea Incubator
+### Hardware
 
-## Hardware
-* [Uart]()
-* [Dev-Board]()
-* [Keyboard-Switches]()
-* [Mounting-Plate]()
-* [PCB]()
+#### Mark 0 (Prototype)
+* NRF52840 MDK 
+* Breakout Board
 
+#### Mark 1
+* Reworked GH60 PCB with NRF52840
+* SWD Debug Connector
+* UART PIN Connector
+* USB-C Connector
+* RGB LED's
 
-## Rust/Embedded-Rust Resources
-
-## DIY Keyboard Resources
+### Software
+#### Keyboard Features
+* Serial Console (UART) Debug Output
+* Serial Console input/output
+* HID (USB - Keyboard)
+* Backlight LEDs
+* Backlight LEDs RGB
+* Framebuffer based LED control
+* CLI
+* Rest Interface via Virtual Serial (USB)
+* Bootloader
+* Flash File System Flash driver -> store persistent config
+* Layering
 
 ## Other OpenSource/DIY Keyboard Projects
 * [GH60](http://blog.komar.be/projects/gh60-programmable-keyboard/)
