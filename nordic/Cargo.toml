@@ -11,5 +11,6 @@ name = "nordic"
 path = "src/lib.rs"
 
 [dependencies]
+cortex-m = "0.5.8"
 nostd = { version = "0.1", path = "../nostd" }
 

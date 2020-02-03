@@ -1,5 +1,8 @@
 use core::convert::From;
 use core::convert::Into;
+use core::time;
+use core::u32;
+use cortex_m::asm;
 use nostd::io;
 use nostd::registers::{Read, Register, Write};
 use nostd::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
@@ -369,5 +372,89 @@ impl nostd::gpio::Output for Output {
             true => self.off(),
             false => self.on(),
         };
+    }
+}
+
+pub enum TimerPeripheral {
+    Timer0,
+    Timer1,
+    Timer2,
+    Timer3,
+    Timer4,
+}
+
+pub struct Clock {}
+
+impl Clock {
+    const CLOCK_START_OSCILLATOR: usize = 0x40000000;
+    const ENABLE: u32 = 1;
+    pub fn enable() {
+        Register::<u32>::new((Self::CLOCK_START_OSCILLATOR) as usize).write(Self::ENABLE);
+    }
+}
+
+pub struct Timer {
+    instance: TimerPeripheral,
+}
+
+impl Timer {
+    const TASK_START_OFFSET: usize = 0x00;
+    const TASK_STOP_OFFSET: usize = 0x04;
+    const START: u32 = 1;
+    const STOP: u32 = 1;
+    const MODE_REGISTER_OFFSET: usize = 504;
+    const BITMODE_REGISTER_OFFSET: usize = 508;
+    const MODE_TIMER: u32 = 0;
+    const BITMODE_32BIT_TIMER_WIDTH: u32 = 3;
+    const TIMER_PRESCALER_REGISTER_OFFSET: usize = 0x510;
+    const COMPARE_REGISTER0_OFFSET: usize = 0x540;
+    const SHORTCUT_REGISTER_OFFSET: usize = 0x200;
+    const CLEAR_TIMER_AFTER_TRIGGER: u32 = 1;
+    const EVENTS_COMPARE0_OFFSET: usize = 0x200;
+    const CLEAR_TIMER_OFFSET: usize = 0x0C;
+    const CLEAR: u32 = 1;
+
+    pub fn new(instance: TimerPeripheral) -> Self {
+        Timer { instance }
+    }
+
+    pub fn sleep(&mut self, duration: core::time::Duration) {
+        let ms = duration.as_millis();
+        assert!(ms <= core::u32::MAX.into());
+        Clock::enable();
+        Register::<u32>::new((self.base_address() + Self::BITMODE_REGISTER_OFFSET) as usize)
+            .write(Self::BITMODE_32BIT_TIMER_WIDTH);
+        Register::<u32>::new((self.base_address() + Self::MODE_REGISTER_OFFSET) as usize)
+            .write(Self::MODE_TIMER);
+        Register::<u32>::new(
+            (self.base_address() + Self::TIMER_PRESCALER_REGISTER_OFFSET) as usize,
+        )
+        .write(0);
+        Register::<u32>::new((self.base_address() + Self::COMPARE_REGISTER0_OFFSET))
+            .write(ms as u32);
+        Register::<u32>::new((self.base_address() + Self::SHORTCUT_REGISTER_OFFSET))
+            .write(Self::CLEAR_TIMER_AFTER_TRIGGER);
+        Register::<u32>::new((self.base_address() + Self::TASK_START_OFFSET) as usize)
+            .write(Self::START);
+        while Register::<u32>::new((self.base_address() + Self::EVENTS_COMPARE0_OFFSET)).read() != 1
+        {
+            asm::nop();
+        }
+        Register::<u32>::new((self.base_address() + Self::TASK_STOP_OFFSET) as usize)
+            .write(Self::STOP);
+        Register::<u32>::new((self.base_address() + Self::CLEAR_TIMER_OFFSET) as usize)
+            .write(Self::CLEAR);
+        Register::<u32>::new((self.base_address() + Self::EVENTS_COMPARE0_OFFSET)).write(0);
+    }
+
+    #[inline(always)]
+    fn base_address(&self) -> usize {
+        match self.instance {
+            TimerPeripheral::Timer0 => 0x40008000,
+            TimerPeripheral::Timer1 => 0x40009000,
+            TimerPeripheral::Timer2 => 0x4000A000,
+            TimerPeripheral::Timer3 => 0x4001A000,
+            TimerPeripheral::Timer4 => 0x4001B000,
+        }
     }
 }
