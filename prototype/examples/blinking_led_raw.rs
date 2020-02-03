@@ -70,10 +70,6 @@ fn delay(ms: u32) {
         ptr::write_volatile(TIMER_MODE_REGISTER as *mut u32, TIMER_TIMER_MODE);
         ptr::write_volatile(TIMER_PRESCALER_REGISTER as *mut u32, TIMER_PRESCALE_VALUE);
 
-        // enable interrupts
-        cortex_m::interrupt::enable();
-        ptr::write_volatile(TIMER_INTERRUPT as *mut u32, (0x3F << 16));
-
         ptr::write_volatile(TIMER_TIMEOUT as *mut u32, ms);
         ptr::write_volatile(TIMER_CONFIG_TRIGGER as *mut u32, CLEAR_TIMER_AFTER_TRIGGER);
 
@@ -86,7 +82,6 @@ fn delay(ms: u32) {
         ptr::write_volatile(STOP_ZE_TIMER as *mut u32, DISABLE_TIMER);
         ptr::write_volatile(CLEAR_TIMER as *mut u32, 1);
         ptr::write_volatile(TIMER_TRIGGERED as *mut u32, 0);
-        ptr::write_volatile(TIMER_DISABLE_INTERRUPT as *mut u32, 0);
     }
 }
 
