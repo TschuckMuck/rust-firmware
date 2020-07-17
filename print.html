@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>YAK - Yet Another Keyboard</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="intro.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="prototyping/prototyping.html"><strong aria-hidden="true">2.</strong> Prototyping</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prototyping/tooling/linux.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="prototyping/tooling/macosx.html"><strong aria-hidden="true">2.2.</strong> MacOsx</a></li></ol></li><li class="chapter-item expanded "><a href="resources.html"><strong aria-hidden="true">3.</strong> Resources</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">YAK - Yet Another Keyboard</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#the-yak-keyboard" id="the-yak-keyboard">The YAK Keyboard</a></h1>
+<p>The YAK keyboard is a NRF52840 based open source 60% DYI keyboard with rust firmware.</p>
+<h2><a class="header" href="#nrf52840-overview" id="nrf52840-overview">NRF52840 Overview</a></h2>
+<ul>
+<li>ARM CortextM4</li>
+<li>256 KB RAM</li>
+<li>1 MB Flash</li>
+<li>Bluetooth</li>
+<li>USB</li>
+</ul>
+<p><a href="https://www.nordicsemi.com/Products/Low-power-short-range-wireless/nRF52840">more details</a></p>
+<h2><a class="header" href="#idea-incubator" id="idea-incubator">Idea Incubator</a></h2>
+<h3><a class="header" href="#hardware" id="hardware">Hardware</a></h3>
+<h4><a class="header" href="#mark-0-prototype" id="mark-0-prototype">Mark 0 (Prototype)</a></h4>
+<ul>
+<li>NRF52840 MDK </li>
+<li>Breakout Board</li>
+</ul>
+<h4><a class="header" href="#mark-1" id="mark-1">Mark 1</a></h4>
+<ul>
+<li>Reworked GH60 PCB with NRF52840</li>
+<li>SWD Debug Connector</li>
+<li>UART PIN Connector</li>
+<li>USB-C Connector</li>
+<li>RGB LED's</li>
+</ul>
+<h3><a class="header" href="#software" id="software">Software</a></h3>
+<h4><a class="header" href="#keyboard-features" id="keyboard-features">Keyboard Features</a></h4>
+<ul>
+<li>Serial Console (UART) Debug Output</li>
+<li>Serial Console input/output</li>
+<li>HID (USB - Keyboard)</li>
+<li>Backlight LEDs</li>
+<li>Backlight LEDs RGB</li>
+<li>Framebuffer based LED control</li>
+<li>CLI</li>
+<li>Rest Interface via Virtual Serial (USB)</li>
+<li>Bootloader</li>
+<li>Flash File System Flash driver -&gt; store persistent config</li>
+<li>Layering</li>
+</ul>
+<h2><a class="header" href="#other-opensourcediy-keyboard-projects" id="other-opensourcediy-keyboard-projects">Other OpenSource/DIY Keyboard Projects</a></h2>
+<ul>
+<li><a href="http://blog.komar.be/projects/gh60-programmable-keyboard/">GH60</a></li>
+<li><a href="https://github.com/adereth/dactyl-keyboard">Dactyl-Keyboard</a></li>
+<li><a href="https://github.com/abstracthat/dactyl-manuform">Dactyl-ManuForm-Keyboard</a></li>
+<li><a href="https://github.com/swanmatch/colosseum60">Colosseum</a></li>
+<li><a href="https://github.com/nicinabox/lets-split-guide">Lets-Split-Keyboard</a></li>
+</ul>
+<h1><a class="header" href="#prototyping" id="prototyping">Prototyping</a></h1>
+<p>This section of the book describes the process of prototyping the YAK keyboard based on the existing
+GH60.</p>
+<h2><a class="header" href="#prerequisites" id="prerequisites">Prerequisites</a></h2>
+<h3><a class="header" href="#documentationmanualsdatasheets" id="documentationmanualsdatasheets">Documentation/Manuals/Datasheets</a></h3>
+<p>To get all relevant datasheets for the hardware used in this project you can execute the following
+command(s) to retrieve them:</p>
+<pre><code class="language-shell">user@host $  cd yak/book/datasheets/
+user@host $  ./download_datasheets.sh
+</code></pre>
+<h3><a class="header" href="#tooling--software" id="tooling--software">Tooling / Software</a></h3>
+<p>For detailed instructions on how to install the tools mentioned below check your operating
+system-specific instructions (Windows, Linux, macOS).</p>
+<h4><a class="header" href="#c-arm-toolchain" id="c-arm-toolchain">C (ARM Toolchain)</a></h4>
+<p><a href="https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads">Download Page</a></p>
+<h4><a class="header" href="#rust-toolchain" id="rust-toolchain">Rust Toolchain</a></h4>
+<p><a href="https://rustup.rs/">Download Page</a></p>
+<h4><a class="header" href="#segger-debugging-tools" id="segger-debugging-tools">SEGGER Debugging tools</a></h4>
+<p><a href="https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack">Download Page</a></p>
+<h4><a class="header" href="#nordic-nrf5x-command-line-tools" id="nordic-nrf5x-command-line-tools">Nordic nrf5x command line tools</a></h4>
+<p><a href="https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html">Download Page</a></p>
+<h4><a class="header" href="#openocd" id="openocd">OpenOCD</a></h4>
+<p><a href="http://openocd.org/">Project Homepage</a></p>
+<h3><a class="header" href="#hardware-1" id="hardware-1">Hardware</a></h3>
+<ul>
+<li>nRF52840 Dev Board</li>
+<li>GH60 PCB</li>
+<li>USB to UART Adapter</li>
+</ul>
+<h4><a class="header" href="#nrf52840-dev-board" id="nrf52840-dev-board">nRF52840 Dev Board</a></h4>
+<p>The nRF5280 is a development board for the nordic nrf52840 mcu which also already includes a (segger) debugger on the dev board itself.
+One place you can order the nRF52840 Development Kit is <a href="https://www.rutronik24.com/product/nordic/nrf52840-dk/10422794.html">here</a></p>
+<h4><a class="header" href="#gh60-pcb" id="gh60-pcb">GH60 PCB</a></h4>
+<p>Due to the fact that the YAK keyboard will be built based on the well-known GH60 it is recommended to get one to be able to create a breakout board
+which can be used for HW testing until the first YAK PCBs will be available.
+One place you can order the GH60 PCB is <a href="https://www.banggood.com/GH60-DIY-Mechanical-Keyboard-PCB-Support-Breathing-LED-60-Cherry-MX-Poker2-Poker3-p-1084998.html?cur_warehouse=CN">here</a></p>
+<h4><a class="header" href="#usb-to-uart-adapter" id="usb-to-uart-adapter">USB to UART Adapter</a></h4>
+<p>In order to communicate with the UART on the development board an adapter for the &quot;PC&quot; is needed.
+One place you can order such an adapter is <a href="https://www.amazon.de/dp/B0753H4SQS/ref=cm_sw_em_r_mt_dp_U_uEdSCb45T73B2?th=1">here</a></p>
+<h1><a class="header" href="#linux" id="linux">Linux</a></h1>
+<h2><a class="header" href="#c-arm-toolchain-1" id="c-arm-toolchain-1">C (ARM Toolchain)</a></h2>
+<pre><code class="language-shell">user@host ~$ sudo apt install gcc-arm-none-eabi
+user@host ~$ sudo apt install gdb-arm-none-eabi
+</code></pre>
+<h2><a class="header" href="#rust-toolchain-1" id="rust-toolchain-1">Rust Toolchain</a></h2>
+<pre><code class="language-shell">user@host ~$ curl https://sh.rustup.rs -sSf | sh
+</code></pre>
+<h2><a class="header" href="#segger-debugging-tools-1" id="segger-debugging-tools-1">SEGGER Debugging tools</a></h2>
+<p>Go to the download page, choose the appropriate JLink Software &amp; Documentation package, then install
+similar to this example:</p>
+<pre><code class="language-shell">user@host ~$ sudo dpkg -i ~/Downloads/JLink_Linux_V644i_x86_64.deb
+</code></pre>
+<h2><a class="header" href="#nordic-nrf5x-command-line-tools-1" id="nordic-nrf5x-command-line-tools-1">Nordic nRF5x command line tools</a></h2>
+<p>Go to the download page, choose the appropriate SW package, then extract similar to this example:</p>
+<pre><code class="language-shell">user@host ~$ tar xf ~/Downloads/nRF-Command-Line-Tools_9_8_1_Linux-x86_64.tar
+</code></pre>
+<p>Next move the extracted folders to your desired destination:</p>
+<pre><code class="language-shell">user@host ~$ sudo mv nrfjprog/ /opt/nrfjprog
+user@host ~$ sudo mv mergehex/ /opt/mergehex
+</code></pre>
+<p>And set up your path to find the programs:</p>
+<pre><code class="language-shell">user@host ~$ export PATH=&quot;$PATH:/opt/nrfjprog&quot;
+user@host ~$ export PATH=&quot;$PATH:/opt/mergehex&quot;
+</code></pre>
+<h2><a class="header" href="#open-ocd" id="open-ocd">Open Ocd</a></h2>
+<p>The openocd package provided to Ubuntu 16.04 sucks, so we'll build it on our own.
+Building on our own also kind of sucks, but at least we get a proper OpenOCD installation when we're
+done.</p>
+<p>If you have a pre-existing version of OpenOCD coming from apt, we'll get rid of it</p>
+<pre><code class="language-shell">sudo apt purge openocd
+</code></pre>
+<p>Packages you need to have installed to configure OpenOCD:</p>
+<pre><code class="language-shell">sudo apt install autotools-dev automake libtool
+</code></pre>
+<p>Now, let's set up a proper OpenOCD installation</p>
+<pre><code class="language-shell"># clone the OpenOCD git repo
+git clone https://github.com/ntfreak/openocd.git
+
+cd openocd
+# configure
+./bootstrap
+./configure
+# build
+make -j$(nrpoc)
+# install
+make install -j$(nproc)
+</code></pre>
+<h1><a class="header" href="#macosx" id="macosx">MacOsx</a></h1>
+<h2><a class="header" href="#c-arm-toolchain-2" id="c-arm-toolchain-2">C (ARM Toolchain)</a></h2>
+<pre><code class="language-shell">user@host ~$ brew install armmbed/formulae/arm-none-eabi-gcc
+</code></pre>
+<h2><a class="header" href="#rust-toolchain-2" id="rust-toolchain-2">Rust Toolchain</a></h2>
+<pre><code class="language-shell">user@host ~$ curl https://sh.rustup.rs -sSf | sh
+</code></pre>
+<pre><code class="language-shell">user@host ~$ rustup target add thumbv7em-none-eabihf
+</code></pre>
+<h2><a class="header" href="#segger-debugging-tools-2" id="segger-debugging-tools-2">SEGGER Debugging tools</a></h2>
+<pre><code class="language-shell">user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
+user@host ~$ brew cask install segger-jlink
+</code></pre>
+<h2><a class="header" href="#nordic-nrf5x-command-line-tools-2" id="nordic-nrf5x-command-line-tools-2">Nordic nRF5x command line tools</a></h2>
+<pre><code class="language-shell">user@host ~$  brew cask install nordic-nrf-command-line-tools
+</code></pre>
+<h2><a class="header" href="#open-ocd-1" id="open-ocd-1">Open Ocd</a></h2>
+<pre><code class="language-shell">user@host ~$ brew install open-ocd
+</code></pre>
+<h5><a class="header" href="#segger-debugging-tools-3" id="segger-debugging-tools-3">Segger Debugging tools</a></h5>
+<p><a href="https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html">Download Page</a></p>
+<pre><code class="language-shell">user@host ~$ brew cask install homebrew/cask-drivers/segger-jlink
+user@host ~$ brew cask install segger-jlink
+</code></pre>
+<h5><a class="header" href="#nordic-nrf5x-command-line-tools-3" id="nordic-nrf5x-command-line-tools-3">Nordic nrf5x command line tools</a></h5>
+<p><a href="https://infocenter.nordicsemi.com/topic/ug_nrf5x_cltools/UG/cltools/nrf5x_command_line_tools_lpage.html">Download Page</a></p>
+<pre><code class="language-shell">user@host ~$ brew cask install nordic-nrf5x-command-line-tools
+</code></pre>
+<h5><a class="header" href="#open-ocd-2" id="open-ocd-2">Open Ocd</a></h5>
+<p><a href="http://openocd.org/">Project Homepage</a></p>
+<pre><code class="language-shell">user@host ~$ brew install open-ocd
+</code></pre>
+<h3><a class="header" href="#hardware-2" id="hardware-2">Hardware</a></h3>
+<ul>
+<li>nRF52840 Dev Board</li>
+<li>GH60 PCB</li>
+<li>USB to UART Adapter</li>
+</ul>
+<h4><a class="header" href="#nrf52840-dev-board-1" id="nrf52840-dev-board-1">nRF52840 Dev Board</a></h4>
+<p>The nRF5280 is a development board for the nordic nrf52840 mcu which also already includes a (segger) debugger on the dev board itself.
+You can order the nRF52840 Development Kit for example <a href="https://www.rutronik24.com/product/nordic/nrf52840-dk/10422794.html">here</a></p>
+<h4><a class="header" href="#gh60-pcb-1" id="gh60-pcb-1">GH60 PCB</a></h4>
+<p>Due to the fact that the YAK keyboard will be built based on the well know GH60 it is recommended to get one to be able create a break-out-board
+which can be used for HW testing until the first YAK PCB's will be available.
+The GH60 PCB can be ordered for example <a href="https://www.banggood.com/GH60-DIY-Mechanical-Keyboard-PCB-Support-Breathing-LED-60-Cherry-MX-Poker2-Poker3-p-1084998.html?cur_warehouse=CN">here</a></p>
+<h4><a class="header" href="#usb-to-uart-adapter-1" id="usb-to-uart-adapter-1">USB to UART Adapter</a></h4>
+<p>In order to communicate with the uart on the dev board a adapter for the &quot;PC&quot; is needed you can order such an adapter for example <a href="https://www.amazon.de/dp/B0753H4SQS/ref=cm_sw_em_r_mt_dp_U_uEdSCb45T73B2?th=1">here</a></p>
+<h2><a class="header" href="#debug--flash" id="debug--flash">Debug / Flash</a></h2>
+<p>This Section assumes you have connected a USB cable to the interface MCU of the of the nRF52840 dev board.</p>
+<h3><a class="header" href="#open-ocd-3" id="open-ocd-3">Open OCD</a></h3>
+<pre><code class="language-shell">user@host ~$ openocd -f board/nordic_nrf52_dk.cfg
+</code></pre>
+<h3><a class="header" href="#connect-to-gdb-server" id="connect-to-gdb-server">Connect to GDB Server</a></h3>
+<h4><a class="header" href="#gdb" id="gdb">GDB</a></h4>
+<pre><code class="language-shell">user@host ~$ gdb target/thumbv7em-none-eabihf/rust-firmware
+
+(gdb) target remote 127.0.0.1:2331
+
+</code></pre>
+<h4><a class="header" href="#lldb" id="lldb">LLDB</a></h4>
+<p>** Attention ** Currently it is easier to use GDB due to the fact that LLDB e.g. does not support the monitor command out of the box.</p>
+<pre><code class="language-shell">user@host ~$ lldb
+(lldb) platform select remote-gdb-server
+(lldb) platform connect connect://127.0.0.1:2331
+</code></pre>
+<h3><a class="header" href="#erase-flash" id="erase-flash">Erase Flash</a></h3>
+<pre><code class="language-shell">user@host ~$  nrfjprog --eraseall -f nrf52
+</code></pre>
+<h4><a class="header" href="#convert-elf-file-to-intel-hex-file" id="convert-elf-file-to-intel-hex-file">Convert .elf file to intel hex file</a></h4>
+<pre><code class="language-shell">arm-none-eabi-objcopy -O ihex target/thumbv7em-none-eabihf/debug/rust-firmware image.bin
+</code></pre>
+<h1><a class="header" href="#resources" id="resources">Resources</a></h1>
+<h2><a class="header" href="#rust" id="rust">Rust</a></h2>
+<h2><a class="header" href="#embedded-development" id="embedded-development">Embedded Development</a></h2>
+<h2><a class="header" href="#low-level-to-look-into" id="low-level-to-look-into">Low Level to look into</a></h2>
+<p>Creates the <code>yak-project</code> might want to use in the future.</p>
+<h3><a class="header" href="#os--processing--tasks" id="os--processing--tasks">OS / Processing / Tasks</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/rtfm-rs/cortex-m-rtfm">RTFM</a></td><td></td></tr>
+<tr><td><a href="https://github.com/rtfm-rs/microamp">Repo</a></td><td></td></tr>
+<tr><td><a href="https://github.com/hashmismatch/freertos.rs">FreeRtos-Rs</a></td><td>rust bindings for free rtos</td></tr>
+</tbody></table>
+<h3><a class="header" href="#data-structures" id="data-structures">Data Structures</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/heapless">heapless</a></td><td>Statically sized/allocated data structures</td></tr>
+<tr><td><a href="https://crates.io/crates/bbqueue">BBQueue</a></td><td>lockfree spsc queue</td></tr>
+<tr><td><a href="https://crates.io/crates/intrusive-collections">intrusive-collections</a></td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#parsers" id="parsers">Parsers</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/combine">combine</a></td><td>Parser Combinator</td></tr>
+<tr><td><a href="https://crates.io/crates/nom">nom</a></td><td>Parser Combinator</td></tr>
+</tbody></table>
+<h3><a class="header" href="#protocols" id="protocols">Protocols</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/infrared">Infrared</a></td><td>Lib sending and recv. handling infrared signals</td></tr>
+<tr><td><a href="https://github.com/m-labs/smoltcp">smoltcp</a></td><td>tcp/ip stack</td></tr>
+<tr><td><a href="https://crates.io/crates/rubble">rubble</a></td><td>bluethooth low energy protocol stack</td></tr>
+</tbody></table>
+<h3><a class="header" href="#misc" id="misc">Misc</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/atomic">atomic</a></td><td>Support for more general atomic types</td></tr>
+<tr><td><a href="https://crates.io/crates/managed">managed</a></td><td>managed is a library that provides a way to logically own objects, whether or not heap allocation is available.</td></tr>
+<tr><td><a href="https://crates.io/crates/register">register</a></td><td>MMIO interfaces</td></tr>
+</tbody></table>
+<h3><a class="header" href="#testing" id="testing">Testing</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/japaric/utest">utest</a></td><td>running unit tests on target processor</td></tr>
+</tbody></table>
+<h3><a class="header" href="#terminalshellconsole" id="terminalshellconsole">Terminal/Shell/Console</a></h3>
+<table><thead><tr><th>Crate</th><th>Descriptions</th></tr></thead><tbody>
+<tr><td><a href="https://crates.io/crates/console-traits">console-traits</a></td><td></td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
