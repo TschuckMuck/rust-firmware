@@ -1,11 +1,10 @@
 use core::convert::From;
 use core::convert::Into;
-use core::time;
 use core::u32;
 use cortex_m::asm;
 use nostd::io;
 use nostd::registers::{Read, Register, Write};
-use nostd::uart::{BaudRate, Configuration, Configure, Parity, StopBits};
+use nostd::uart::{BaudRate, Configuration, Parity, StopBits};
 
 pub enum Port {
     P0,
@@ -99,7 +98,7 @@ impl io::Write for Uart {
     fn write_byte(&mut self, byte: u8) -> Result<(), io::IoError> {
         Register::<u32>::new(Self::BASE_ADDRESS + (Self::TXD_OFFSET as usize)).write(byte as u32);
         // wait till byte was transfered
-        while (!self.is_tx_rdy()) {}
+        while !self.is_tx_rdy() {}
         // clear tx ready event
         self.clear_tx_rdy();
         Ok(())
@@ -430,21 +429,19 @@ impl Timer {
             (self.base_address() + Self::TIMER_PRESCALER_REGISTER_OFFSET) as usize,
         )
         .write(0);
-        Register::<u32>::new((self.base_address() + Self::COMPARE_REGISTER0_OFFSET))
-            .write(ms as u32);
-        Register::<u32>::new((self.base_address() + Self::SHORTCUT_REGISTER_OFFSET))
+        Register::<u32>::new(self.base_address() + Self::COMPARE_REGISTER0_OFFSET).write(ms as u32);
+        Register::<u32>::new(self.base_address() + Self::SHORTCUT_REGISTER_OFFSET)
             .write(Self::CLEAR_TIMER_AFTER_TRIGGER);
         Register::<u32>::new((self.base_address() + Self::TASK_START_OFFSET) as usize)
             .write(Self::START);
-        while Register::<u32>::new((self.base_address() + Self::EVENTS_COMPARE0_OFFSET)).read() != 1
-        {
+        while Register::<u32>::new(self.base_address() + Self::EVENTS_COMPARE0_OFFSET).read() != 1 {
             asm::nop();
         }
         Register::<u32>::new((self.base_address() + Self::TASK_STOP_OFFSET) as usize)
             .write(Self::STOP);
         Register::<u32>::new((self.base_address() + Self::CLEAR_TIMER_OFFSET) as usize)
             .write(Self::CLEAR);
-        Register::<u32>::new((self.base_address() + Self::EVENTS_COMPARE0_OFFSET)).write(0);
+        Register::<u32>::new(self.base_address() + Self::EVENTS_COMPARE0_OFFSET).write(0);
     }
 
     #[inline(always)]
